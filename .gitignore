@@ -31,3 +31,5 @@ ExportedObj/
 # Archivos temporales del sistema operativo
 .DS_Store
 Thumbs.db
+
+.vs/
