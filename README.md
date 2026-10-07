@@ -35,3 +35,12 @@ Se importa el pack de tilesets que vamos a usar a la carpeta de Sprites. Los sel
 # 4) Colisiones en el espacio
 
 Para aplicar colisiones en los tilemaps, creamos 4 grados de tilemaps distintos: aquellos que no tienen colisión y tienen un Order in Layer menor al personaje (el suelo), aquellos que sí tienen colisión y tienen un orden menor al personaje (las bases de estructuras o elementos), aquellos que no tienen colisión y tienen un orden mayor al personaje (la parte alta de estructuras o elementos, la cual el personaje pasa por "detrás") y aquellos que tienen colisión y tienen un orden mayor al personaje (estructuras o partes de elementos que el personaje choca y no puede superponerse).
+
+# 5) Cambio de colisiones para representar un cambio de nivel del suelo del personaje
+
+Para usar escaleras y subir o bajar un nivel del suelo usamos dos scripts: Elevation_Entry y Elevation_Exit. Las escaleras están en el nivel de Non-collision-Low, así que a dicho objeto le agregamos el componente Script -> Elevation_Entry. En el inspector aparecen inputs para agregar los MountainColliders (Collision-High y Collision-Low) y el MountainBoundary (al que vamos a arrastrar el tilemap que hagamos después):
+<br><img width="333" height="662" alt="image" src="https://github.com/user-attachments/assets/e46fd693-8ec5-4489-86e7-6abdf606608a" />
+<br>El Box collider de cada escalera tiene que ajustarse al escalón superior y estar seteado como Trigger.
+<br>Para que funcione correctamente, el Player tiene que figurar en el inspector con el Tag de Player, ya que a través del tag es como lo captura el script.
+<br>Se crea un tilemap MountainBoundary que va a marcar los límites de las estructuras elevadas que el personaje no debe atravesar, ni arriba ni abajo. Usamos un tilemap cualquiera y lo ponemos invisible, e inicialmente con un collider desactivado.
+<br>Luego para el Exit hay que desactivar el boundary. Se crea un objeto vacío dentro de Non-collision-Low con el nombre Exits y con un componente Box Collider 2D (seteado como Trigger) en el último escalón inferior de cada escalera delimitamos la "salida" del espacio elevado. A este objeto también le agregamos el componente Script -> Elevation_Exit, con los mismos MountainColliders y MountainBoundary.
