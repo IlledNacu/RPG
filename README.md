@@ -18,3 +18,15 @@
 <img width="871" height="769" alt="image" src="https://github.com/user-attachments/assets/f1a1fef3-1966-4740-951e-69499f4c4475" />
 <br>Modificamos el script para agregar las variables de runSpeed, runAction (para setear desde el motor en el Shift) y de movimiento, establecemos la transición de una animación a otra en función del estado del personaje y el Flip (volteo).
 <br>Es necesario, desde el motor, arrastrar la caja del Animator dentro de la variable Anim declarada en el script del personaje.
+
+# 3) Tilemaps y elevaciones con colición
+
+Se importa el pack de tilesets que vamos a usar a la carpeta de Sprites. Los seleccionamos y en el inspector nos aseguramos de que estén configurados de la siguiente manera:
+<img width="290" height="475" alt="image" src="https://github.com/user-attachments/assets/1fb7143b-5dfb-40f2-be91-3806a2cfddab" />
+<br>Luego seleccionamos uno y abrimos el Sprite editor, y arriba en Slice:
+<img width="298" height="248" alt="image" src="https://github.com/user-attachments/assets/f2807728-2338-426a-af0f-6cc7c62c8b25" />
+<br>Aplicamos los cambios. Esto lo repetimos con todos nuestros sets.
+<br>Luego vamos a añadir en Hierarchy un nuevo 2D Object -> Tilemap -> Rectangular. El primero va a ser Ground.
+<br>Para crear la paleta, vamos a Window -> 2D -> Tile Palette. (Podemos arrastrar la ventana como una pestaña junto al inspector, dentro de nuestro espacio de trabajo.) Vamos a crear una nueva paleta llamada Grass Tiles, vamos a crear su carpeta dentro de Sprites, y arrastramos los archivos que ya configuramos y separamos antes a la grilla.
+<br>Para empezar a usar la paleta conviene activar la grilla del visualizador y empezamos a pintar eligiendo cada bloque según necesitemos. Hay diversas herramientas de pintura.
+<br>Vamos a volver al inspector de Ground y en Adittional Settings cambiar Order in Layer a -1 para que no se superponga al Player. Luego creamos dos 2D Object -> Tilemap -> Rectangular más: Decorations (Order in Layer = 0) y Elevations (Order in Layer = 1); y cambiamos el Order in Layer del Player a 5. A Elevations le agregamos un componente: Tilemap Collider 2D.
